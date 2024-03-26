@@ -11,6 +11,12 @@ const userDetails = JSON.parse(
 app.use(express.json());
 
 // Write POST endpoint for registering new user
+app.post("/api/v1/details", (req, res) => {
+  console.log("body-->", req.body);
+  userDetails.push(req.body);
+  res.status(201);
+  res.send({message:"User Details added Successfully"});
+});
 
 // GET endpoint for sending the details of users
 app.get("/api/v1/details", (req, res) => {
