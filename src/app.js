@@ -20,7 +20,7 @@ app.post("/api/v1/details", (req, res) => {
   res
     .status(201)
     .json({
-      status: "success",
+      status: "Success",
       message: "User registered successfully",
       data: { newUser },
     });
