@@ -12,10 +12,18 @@ app.use(express.json());
 
 // Write POST endpoint for registering new user
 app.post("/api/v1/details", (req, res) => {
-  //console.log("body-->", req.body);
-  userDetails.push(req.body);
-  res.status(201);
-  res.send({message:"User registered successfully"});
+  // console.log("body-->", req.body);
+  const newId =
+    userDetails.length > 0 ? userDetails[userDetails.length - 1].id + 1 : 1;
+  const newUser = { id: newId, ...req.body };
+  userDetails.push(newUser);
+  res
+    .status(201)
+    .json({
+      status: "success",
+      message: "User registered successfully",
+      data: { newUser },
+    });
 });
 
 // GET endpoint for sending the details of users
